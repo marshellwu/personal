@@ -13,7 +13,7 @@ router.post("/warehouses", async (ctx, next) => {
     if (!validation.success) return ctx.response.body = "pls be careful";
     
     await client.connect();
-    await client.queryArray("INSERT INTO warehouses VALUES(${warehouse.name}, ${warehouse.address})`");
+    await client.queryObject("INSERT INTO warehouses VALUES(${warehouse.name}, ${warehouse.address})`");
     await client.end();
 
     ctx.response.body = warehouse;
@@ -21,7 +21,7 @@ router.post("/warehouses", async (ctx, next) => {
 
 router.get("/warehouses", async (ctx, next) => {
     await client.connect();
-    const warehouses = await client.queryObject("SELECT name, address FROM warehouses");
+    const warehouses = await client.queryArray("SELECT name, address FROM warehouses");
     await client.end();
 
     ctx.response.body = warehouses;
