@@ -21,7 +21,7 @@ router.post("/warehouses", async (ctx, next) => {
 
 router.get("/warehouses", async (ctx, next) => {
     await client.connect();
-    const warehouses = await client.queryArray("SELECT name, address FROM warehouses");
+    const warehouses = (await client.queryArray("SELECT name, address FROM warehouses")).rows;
     await client.end();
 
     ctx.response.body = warehouses;
