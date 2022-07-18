@@ -13,7 +13,7 @@ router.post("/warehouses", async (ctx, next) => {
     if (!validation.success) return ctx.response.body = "pls be careful";
     
     await client.connect();
-    await client.queryObject(`INSERT INTO warehouses VALUES(${warehouse.name}, ${warehouse.address})`);
+    await client.queryObject(`INSERT INTO warehouses (name, address) VALUES(${warehouse.name}, ${warehouse.address})`);
     await client.end();
 
     ctx.response.body = warehouse;
