@@ -1,6 +1,6 @@
 import { z } from "../deps.ts";
 
-export const Warehouse = z.object({
+export const WarehouseSchema = z.object({
     name: z.string(),
     address: z.string()
 });
